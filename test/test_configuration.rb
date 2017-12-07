@@ -263,20 +263,6 @@ class TestConfiguration < JekyllUnitTest
       assert @config.backwards_compatibilize["plugins"]
     end
   end
-  context "#fix_common_issues" do
-    setup do
-      @config = proc do |val|
-        Configuration[{
-          "paginate" => val,
-        }]
-      end
-    end
-    should "sets an invalid 'paginate' value to nil" do
-      assert_nil @config.call(0).fix_common_issues["paginate"]
-      assert_nil @config.call(-1).fix_common_issues["paginate"]
-      assert_nil @config.call(true).fix_common_issues["paginate"]
-    end
-  end
   context "loading configuration" do
     setup do
       @path = source_dir("_config.yml")
